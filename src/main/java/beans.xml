@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<bean class="rest.Symptom" id="Temperature">
+		<property name="uniqueName">
+			<value>Body temperature</value>
+		</property>
+		<property name="min">
+			<value>97</value>
+		</property>
+		<property name="max">
+			<value>98</value>
+		</property>
+	</bean>
+	
+	<bean class="rest.Symptom" id="Waist">
+		<property name="uniqueName">
+			<value>Waist to hip ratio</value>
+		</property>
+		<property name="min">
+			<value>1</value>
+		</property>
+		<property name="max">
+			<value>2</value>
+		</property>
+	</bean>
+	
+	<bean class="rest.Symptom" id="Blood">
+		<property name="uniqueName">
+			<value>Blood pressure</value>
+		</property>
+		<property name="min">
+			<value>60</value>
+		</property>
+		<property name="max">
+			<value>89</value>
+		</property>
+	</bean>
+	
+	<bean class="rest.Symptom" id="Oxygenation">
+		<property name="uniqueName">
+			<value>Oxygenation of blood</value>
+		</property>
+		<property name="min">
+			<value>95</value>
+		</property>
+		<property name="max">
+			<value>100</value>
+		</property>
+	</bean>
+	
+	<bean class="rest.Symptom" id="Pulse">
+		<property name="uniqueName">
+			<value>Pulse rate</value>
+		</property>
+		<property name="min">
+			<value>66</value>
+		</property>
+		<property name="max">
+			<value>99</value>
+		</property>
+	</bean>
+	
+	<bean class="rest.Symptom" id="Glucose">
+		<property name="uniqueName">
+			<value>Blood glucose</value>
+		</property>
+		<property name="min">
+			<value>5</value>
+		</property>
+		<property name="max">
+			<value>8</value>
+		</property>
+	</bean>
+	
+	<bean class="rest.Disease" id="Inflammation">
+		<constructor-arg>
+			<value>Inflammation</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean class="rest.Disease" id="Infection">
+		<constructor-arg>
+			<value>Infection</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean class="rest.Disease" id="Hyperthyroidie">
+		<constructor-arg>
+			<value>Hyperthyroïdie</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean class="rest.Disease" id="Diabete">
+		<constructor-arg>
+			<value>Diabete</value>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="model" class="rest.Model">
+		<constructor-arg>
+			<map>
+			    <entry key-ref="Diabete">
+					<list>
+						<ref bean="Glucose" />
+					</list>
+				</entry>
+				<entry key-ref="Inflammation">
+					<list>
+						<ref bean="Temperature" />
+					</list>
+				</entry>
+				<entry key-ref="Infection">
+					<list>
+						<ref bean="Temperature" />
+					</list>
+				</entry>
+				<entry key-ref="Hyperthyroidie">
+					<list>
+						<ref bean="Temperature" />
+						<ref bean="Oxygenation" />
+						<ref bean="Pulse" />						
+					</list>
+				</entry>
+			</map>
+		</constructor-arg>
+	</bean>
+
+</beans>
